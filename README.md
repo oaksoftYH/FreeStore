@@ -12,7 +12,3 @@ Aplicativo de catálogo digital, para você comprtilhar em suas redes sociais.
 
 OnsenUI - https://github.com/OnsenUI/OnsenUI
 List.JS - https://github.com/javve/list.js/
-
-# Se gostou, pague um café! Rsrs
-
-PIX - 97c348cb-39b9-4c54-b54e-3af6df9f8ac2
