@@ -9,7 +9,31 @@ function OnCreate(event) {
 
     if(page.id === "main") MainPage(nav, page);
     else if (page.id === "produto") ProdutoPage(nav, page);
+    else if (page.id === "carrinho") CarrinhoPage(nav, page);
 
+}
+
+function getCartStore() {
+    let cartStore = localStorage.getItem('free-store-cart-storage');
+    cartStore = cartStore ? JSON.parse(cartStore) : [];
+    
+    return cartStore;
+}
+
+function setCartStore(productToAdd) {
+    const persistCartStore = cart => localStorage.setItem('free-store-cart-storage', JSON.stringify(cart));
+    const cart = getCartStore();
+    if (!cart.some(prod => prod.id === productToAdd.id)) {
+        productToAdd.quantidade = 1;
+        cart.push(productToAdd);
+        return persistCartStore(cart);
+    }
+    return persistCartStore(cart.map(prod => {
+        if (prod.id === productToAdd.id) {
+            prod.quantidade++;
+        }
+        return prod;
+    }));
 }
 
 // função do main
@@ -34,6 +58,12 @@ function MainPage(nav, page) {
             dialoginfo.hide(); // esconde o dialoginfo
         }
     };
+   
+    const btnCarrinho = page.querySelector("#btnCarrinho");
+
+    btnCarrinho.onclick = () => {
+        nav.pushPage("carrinho.html");
+    };
 
     // define quais dados seram adicionados aos items da lista
     let dadosItem = {
@@ -53,7 +83,8 @@ function MainPage(nav, page) {
         listaProdutos.add({
             nome: `${produto.nome} - R$${Number(produto.valor).toFixed(2)}`,
             descricao: produto.descricao,
-            imagem: produto.imagem
+            imagem: produto.imagem,
+            id: produto.id
         });
     });
 
@@ -67,7 +98,8 @@ function MainPage(nav, page) {
                     nome: produtos[i].nome,
                     valor: produtos[i].valor,
                     descricao: produtos[i].descricao,
-                    imagem: produtos[i].imagem
+                    imagem: produtos[i].imagem,
+                    id: produtos[i].id
                 }
             });
         });
@@ -100,11 +132,51 @@ function ProdutoPage(nav, page) {
     btnWA.onclick = () => {
         openWA();
     };
+    const btnAddCArt = page.querySelector("#btn-add-to-list");
+    btnAddCArt.onclick = () => {
+        setCartStore(page.data)
+    };
 
     // função que direciona o cliente para o WhatsApp do vendedor
     function openWA() {
         let msg = `Olá, estou interessado no produto ${page.data.nome}!\nValor R$${Number(page.data.valor).toFixed(2)}\nEle ainda está disponível?`;
         window.open(`https://api.whatsapp.com/send?phone=${WANumero}&text=${encodeURIComponent(msg)}`, "_blank");
     }
+
+}
+
+function CarrinhoPage(nav, page) {
+    console.log(produtos);
+    const textBtnVoltar = page.querySelector("#textBtnVoltar");
+    textBtnVoltar.textContent = appNome;
+
+    // define quais dados seram adicionados aos items da lista
+    let dadosItem = {
+        valueNames: [
+            {name: "imagem", attr: "src"},
+            "nome",
+            "descricao",
+            "quantidade",
+            "total"
+        ],
+        item: "listItemCarrinho"
+    };
+    
+    // "carrega a lista"
+    let listaProdutos = new List("listaProdutosCarrinho", dadosItem);
+
+    // adiciona os produtos na lista
+    getCartStore().forEach( (produto, i) => {
+        listaProdutos.add({
+            nome: `${produto.nome} - R$${Number(produto.valor).toFixed(2)}`,
+            descricao: produto.descricao,
+            imagem: produto.imagem,
+            id: produto.id,
+            quantidade: `Quantidade: ${produto.quantidade}`,
+            total: `Total: R$${Number(produto.valor * produto.quantidade).toFixed(2)}`
+        });
+    });
+
+    //TODO - send cart list to whatsapp
 
 }

@@ -6,12 +6,14 @@ let email = "admin@admin.com"; // seu email
 // se caso for usar imagem local, coloque o caminho absoluto inciando com ./
 let produtos = [
     {
+        id: 1,
         nome: "Aplicativo Simples Delivery",
         valor: 2000.00,
         descricao: "Aplicação intuitiva, voltada para o ramo de delivery de lanches",
         imagem: "./img/Simples Delivery.png"
     },
     {
+        id: 2,
         nome: "Produto de teste",
         valor: 23.50,
         descricao: "Apenas um produto para testar",

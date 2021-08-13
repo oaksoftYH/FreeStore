@@ -1,0 +1,22 @@
+@media only screen and (min-width: 600px) {
+  .page__content {
+    padding: 20px 70px !important;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .page__content {
+    padding: 20px 120px !important;
+  }
+}
+
+.container-product-image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.product-image {
+  max-height: 400px;
+  max-width: 100%;
+}
