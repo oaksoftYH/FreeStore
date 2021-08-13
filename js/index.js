@@ -12,6 +12,29 @@ function OnCreate(event) {
 
 }
 
+function getCartStore() {
+    let cartStore = localStorage.getItem('free-store-cart-storage');
+    cartStore = cartStore ? JSON.parse(cartStore) : [];
+    
+    return cartStore;
+}
+
+function setCartStore(productToAdd) {
+    const persistCartStore = cart => localStorage.setItem('free-store-cart-storage', JSON.stringify(cart));
+    const cart = getCartStore();
+    if (!cart.some(prod => prod.id === productToAdd.id)) {
+        productToAdd.quantidade = 1;
+        cart.push(productToAdd);
+        return persistCartStore(cart);
+    }
+    return persistCartStore(cart.map(prod => {
+        if (prod.id === productToAdd.id) {
+            prod.quantidade++;
+        }
+        return prod;
+    }));
+}
+
 // função do main
 function MainPage(nav, page) {
 
