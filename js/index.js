@@ -57,6 +57,12 @@ function MainPage(nav, page) {
             dialoginfo.hide(); // esconde o dialoginfo
         }
     };
+   
+    const btnCarrinho = page.querySelector("#btnCarrinho");
+
+    btnCarrinho.onclick = () => {
+        nav.pushPage("carrinho.html");
+    };
 
     // define quais dados seram adicionados aos items da lista
     let dadosItem = {
