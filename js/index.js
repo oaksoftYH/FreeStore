@@ -9,6 +9,7 @@ function OnCreate(event) {
 
     if(page.id === "main") MainPage(nav, page);
     else if (page.id === "produto") ProdutoPage(nav, page);
+    else if (page.id === "carrinho") CarrinhoPage(nav, page);
 
 }
 
@@ -131,11 +132,51 @@ function ProdutoPage(nav, page) {
     btnWA.onclick = () => {
         openWA();
     };
+    const btnAddCArt = page.querySelector("#btn-add-to-list");
+    btnAddCArt.onclick = () => {
+        setCartStore(page.data)
+    };
 
     // função que direciona o cliente para o WhatsApp do vendedor
     function openWA() {
         let msg = `Olá, estou interessado no produto ${page.data.nome}!\nValor R$${Number(page.data.valor).toFixed(2)}\nEle ainda está disponível?`;
         window.open(`https://api.whatsapp.com/send?phone=${WANumero}&text=${encodeURIComponent(msg)}`, "_blank");
     }
+
+}
+
+function CarrinhoPage(nav, page) {
+    console.log(produtos);
+    const textBtnVoltar = page.querySelector("#textBtnVoltar");
+    textBtnVoltar.textContent = appNome;
+
+    // define quais dados seram adicionados aos items da lista
+    let dadosItem = {
+        valueNames: [
+            {name: "imagem", attr: "src"},
+            "nome",
+            "descricao",
+            "quantidade",
+            "total"
+        ],
+        item: "listItemCarrinho"
+    };
+    
+    // "carrega a lista"
+    let listaProdutos = new List("listaProdutosCarrinho", dadosItem);
+
+    // adiciona os produtos na lista
+    getCartStore().forEach( (produto, i) => {
+        listaProdutos.add({
+            nome: `${produto.nome} - R$${Number(produto.valor).toFixed(2)}`,
+            descricao: produto.descricao,
+            imagem: produto.imagem,
+            id: produto.id,
+            quantidade: `Quantidade: ${produto.quantidade}`,
+            total: `Total: R$${Number(produto.valor * produto.quantidade).toFixed(2)}`
+        });
+    });
+
+    //TODO - send cart list to whatsapp
 
 }
