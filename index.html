@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- IMPORTA OS ESTILOS DO ONSENUI
+    ---------------------------------------------------------------------------- -->
+    <link rel="stylesheet" href="libs/onsenUI/css/onsenui.min.css">
+    <link rel="stylesheet" href="libs/onsenUI/css/onsen-css-components.min.css">
+
+    <!-- IMPORTA A BIBLIOTECA DO ONSENUI
+    ------------------------------------------------------ -->
+    <script src="libs/onsenUI/js/onsenui.min.js"></script>
+
+    <!-- IMPORTA A BIBLIOTECA LIST.JS
+    -------------------------------------------------- -->
+    <script src="libs/list.js/listjs.min.js"></script>
+
+    <!-- IMPORTA O SCRIPT QUE CONTEM TODOS OS DADOS
+    ---------------------------------------------------- -->
+    <script src="js/db/dados.js"></script>
+
+    <title>FreeStore</title>
+</head>
+<body>
+    
+    <ons-navigator swipeable id="nav" page="main.html"></ons-navigator>
+
+    <!-- TEMPLATE MAIN
+    -------------------------------------------------------------------------------------------- -->
+    <template id="main.html">
+        <ons-page id="main">
+            <ons-toolbar>
+                <div class="left">
+                    <ons-toolbar-button id="btnInfo">
+                        <ons-icon icon="ion-ios-information-circle, material:md-info"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+                <div class="center"></div>
+            </ons-toolbar>
+
+            <!-- LISTA DE PRODUTOS
+            -------------------------------------- -->
+            <div id="listaProdutos">
+                <ons-list class="list"></ons-list>
+            </div>
+
+            <!-- TEMPLA LIST ITEM
+            ------------------------------------------------------------ -->
+            <div style="display: none;">
+                <ons-list-item class="listItem" id="listItem" modifier="chevron" tappable>
+                    <div class="left">
+                        <img src="" alt="" class="imagem list-item__thumbnail">
+                    </div>
+                    <div class="center">
+                        <span class="nome list-item__title"></span>
+                        <span class="descricao list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+            </div>
+
+            <ons-dialog id="info">
+                <div style="text-align: center; padding: 10px;">
+                    <p id="numero"></p>
+                    <p id="email"></p>
+                    <ons-button id="closeDialogInfo" modifier="large">Fechar</ons-button>
+                </div>
+            </ons-dialog>
+
+        </ons-page>
+    </template>
+
+    <!-- TEMPLATE DO PRODUTO
+    -------------------------------------------------------------------------------------------- -->
+    <template id="produto.html">
+        <ons-page id="produto">
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button><span id="textBtnVoltar"></span></ons-back-button>
+                </div>
+                <div class="center"></div>
+            </ons-toolbar>
+
+            <!-- IMAGEM DO PRODUTO -->
+            <img src="" alt="" width="100%" height="40%">
+
+            <!-- CONTEUDO DO PRODUTO -->
+            <div style="padding: 10px;">
+                <h2 id="nome"></h2>
+                <p id="valor"></p>
+                <p id="descricao"></p>
+                <ons-button id="btn-whatsapp" style="margin-top: 10px;" modifier="large">Comprar via WhatsApp</ons-button>
+            </div>
+
+        </ons-page>
+    </template>
+
+<!-- IMPORTA O SCRIPT QUE CONTROLA TODA A APLICAÇÃO
+---------------------------------------------------------- -->
+<script src="js/index.js"></script>
+</body>
+</html>
