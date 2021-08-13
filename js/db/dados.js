@@ -1,5 +1,5 @@
 let appNome = "FreeStore"; // nome da aplicação
-let WANumero = "seu número"; // seu número do whatsapp
+let WANumero = "5597981039287"; // seu número do whatsapp
 let email = "admin@admin.com"; // seu email
 
 // lista de produtos, por favor siga esse padrão
