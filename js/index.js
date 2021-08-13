@@ -82,7 +82,8 @@ function MainPage(nav, page) {
         listaProdutos.add({
             nome: `${produto.nome} - R$${Number(produto.valor).toFixed(2)}`,
             descricao: produto.descricao,
-            imagem: produto.imagem
+            imagem: produto.imagem,
+            id: produto.id
         });
     });
 
@@ -96,7 +97,8 @@ function MainPage(nav, page) {
                     nome: produtos[i].nome,
                     valor: produtos[i].valor,
                     descricao: produtos[i].descricao,
-                    imagem: produtos[i].imagem
+                    imagem: produtos[i].imagem,
+                    id: produtos[i].id
                 }
             });
         });
