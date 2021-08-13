@@ -104,7 +104,7 @@ function ProdutoPage(nav, page) {
     // função que direciona o cliente para o WhatsApp do vendedor
     function openWA() {
         let msg = `Olá, estou interessado no produto ${page.data.nome}!\nValor R$${Number(page.data.valor).toFixed(2)}\nEle ainda está disponível?`;
-        window.open(`https://api.whatsapp.com/send?phone=${WANumero}&text=${msg}`, "_blank");
+        window.open(`https://api.whatsapp.com/send?phone=${WANumero}&text=${encodeURIComponent(msg)}`, "_blank");
     }
 
 }
