@@ -107,6 +107,49 @@
         </ons-page>
     </template>
 
+    <!-- TEMPLATE DO CARRINHO
+    -------------------------------------------------------------------------------------------- -->
+    <template id="carrinho.html">
+        <ons-page id="carrinho">
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button><span id="textBtnVoltar"></span></ons-back-button>
+                </div>
+                <div class="center"></div>
+            </ons-toolbar>
+
+            <div id="listaProdutosCarrinho">
+                <ons-list class="list"></ons-list>
+            </div>
+            <div style="display: none;">
+                <ons-list-item class="listItem" id="listItemCarrinho">
+                    <div class="left">
+                        <img src="" alt="" class="imagem list-item__thumbnail">
+                    </div>
+                    <div class="center">
+                        <div style="width: 100%;">
+                            <span class="nome list-item__title"></span>
+                        </div>
+                        <div style="width: 100%;">
+                            <span class="descricao list-item__subtitle"></span>
+                        </div>
+                        <div style="width: 100%;">
+                            <span class="quantidade list-item__quantidade"></span>
+                        </div>
+                        <div>
+                            <span class="total list-item__total"></span>
+                        </div>
+                    </div>
+                </ons-list-item>
+            </div>
+
+            <div style="padding: 10px;">
+                <ons-button id="btn-whatsapp" style="margin-top: 10px;" modifier="large">Enviar via WhatsApp</ons-button>
+            </div>
+
+        </ons-page>
+    </template>
+
 <!-- IMPORTA O SCRIPT QUE CONTROLA TODA A APLICAÇÃO
 ---------------------------------------------------------- -->
 <script src="js/index.js"></script>
